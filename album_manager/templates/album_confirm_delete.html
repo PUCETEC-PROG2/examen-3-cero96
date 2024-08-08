@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+{% block title %}Lista de Albums{% endblock title %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'album_list' %}">Lista de Álbumes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{% url 'album_list' %}">Volver a Lista de Álbumes</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container my-4">
+        <h2>¿Estás seguro de que deseas eliminar el álbum "{{ album.titulo }}"?</h2>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{% url 'album_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </main>
+    {% endblock content %}
+    

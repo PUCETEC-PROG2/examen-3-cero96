@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block title %}Lista de Artistas{% endblock title %}
+
+{% block content %}
+ 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'artista_list' %}">Lista de Artistas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{% url 'artista_list' %}">Volver a Lista de Artistas</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container my-4">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nombre">Nombre del Artista</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ form.nombre.value }}" required>
+            </div>
+            <div class="form-group">
+                <label for="pais_origen">País de Origen</label>
+                <input type="text" class="form-control" id="pais_origen" name="pais_origen" value="{{ form.pais_origen.value }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </main>
+{% endblock content %}

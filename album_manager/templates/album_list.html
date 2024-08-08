@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+
+{% block title %}Lista de Albums{% endblock title %}
+
+{% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'artista_list' %}">Ver Artistas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{% url 'album_create' %}">Crear Nuevo Álbum</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main class="container my-4">
+        <ul class="list-group">
+            {% for album in albums %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a href="{% url 'album_detail' album.pk %}">{{ album.titulo }}</a>
+                    <div>
+                        <a class="btn btn-warning btn-sm" href="{% url 'album_update' album.pk %}">Editar</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'album_delete' album.pk %}">Eliminar</a>
+                    </div>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No hay álbumes disponibles.</li>
+            {% endfor %}
+        </ul>
+    </main>
+    {% endblock content %}
+
